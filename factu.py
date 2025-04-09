@@ -15,12 +15,12 @@ st.title("📊 Traitement de fichier Excel")
 st.header("Charger un fichier Excel")
 uploaded_file = st.file_uploader("Choisissez un fichier Excel", type=["xlsx", "xls", "csv"])
 
-ligne_noms_colonnes = st.number_input(
+if uploaded_file:
+
+    ligne_noms_colonnes = st.number_input(
     "Sur quelle ligne du fichier se trouvent les noms de colonnes ?",
     min_value=1, value=1, step=1
 )
-
-if uploaded_file:
     # Lecture du fichier Excel
     try:
         df = pd.read_excel(uploaded_file, engine='openpyxl', header=ligne_noms_colonnes - 1) # Header= numéro de la ligne sur laquelle se trouvent les noms de colonne
@@ -30,6 +30,9 @@ if uploaded_file:
 
     except Exception as e:
         st.error(f"Erreur lors du traitement du fichier : {e}")
+
+    st.markdown("***")
+    st.markdown("***")
 
     ### TRAITEMENT ###
     # cleaned_df = df.dropna() # Suppresion des doublons
@@ -48,6 +51,8 @@ if uploaded_file:
     st.subheader("Aperçu après Transformation :")
     st.dataframe(df_affiche)
 
+    st.markdown("***")
+    st.markdown("***")
 
     # Export du fichier modifié
     st.header("Exporter le fichier modifié au format Excel")
@@ -122,14 +127,8 @@ if uploaded_file:
     file_name=f"{file_name}.xlsx"
 
     st.download_button(
-        label = "📁 Télécharger Excel",
+        label = "📁 Télécharger le fichier",
         data = excel_data,
         file_name = file_name,
         mime = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
     )
-
-# except Exception as e:
-#     st.error(f"Erreur lors du traitement du fichier : {e}")
-
-
-
