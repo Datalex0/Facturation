@@ -17,12 +17,14 @@ uploaded_file = st.file_uploader("Choisissez un fichier Excel", type=["xlsx", "x
 if uploaded_file:
     # Lecture du fichier Excel
     try:
-        df = pd.read_excel(uploaded_file)
+        df = pd.read_excel(uploaded_file, engine='openpyxl', header=2) # Header= numéro de la ligne sur laquelle se trouvent les noms de colonne
         st.success("Fichier chargé avec succès !")
         st.subheader("Aperçu des données")
         st.dataframe(df)
 
-        cleaned_df = df.dropna()
+        # cleaned_df = df.dropna() # Suppresion des doublons
+        cleaned_df = df.iloc[:, 1:] # Suppression de la 1ere colonne (si vide)
+        # cleaned_df = df.drop(columns=["Unnamed: 0"]) # suppression de la colonne nommée "Colonne 0"
 
         st.write("Aperçu après nettoyage :")
         st.dataframe(cleaned_df)
