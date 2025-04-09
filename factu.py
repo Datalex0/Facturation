@@ -4,7 +4,7 @@ from io import BytesIO
 from PIL import Image
 import numpy as np
 
-st.set_page_config(page_title="Excel Transformer", layout="centered")
+st.set_page_config(page_title="Excel Transformer", page_icon=":bar_chart:", layout="wide")
 
 # image = Image.open("SRC/logo.png")
 
