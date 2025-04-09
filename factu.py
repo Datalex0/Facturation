@@ -14,7 +14,7 @@ st.title("📊 Traitement de fichier Excel")
 # Chargement du fichier Excel
 st.header("Charger un fichier Excel")
 ligne_noms_colonnes = st.number_input(
-    "Sur quelle ligne se trouvent les noms de colonnes ? (par défaut ligne 1)",
+    "Sur quelle ligne du fichier se trouvent les noms de colonnes ?",
     min_value=1, value=1, step=1
 )
 uploaded_file = st.file_uploader("Choisissez un fichier Excel", type=["xlsx", "xls", "csv"])
